@@ -31,7 +31,7 @@ def registrar_resultados():
 
     times[time2]["gols_pro"] += gols2
     times[time2]["gols_contra"] += gols1
-    times[time2]["saldo"] = times[time2]["gols_pro"] - times[time1]["gols_contra"]
+    times[time2]["saldo"] = times[time2]["gols_pro"] - times[time2]["gols_contra"]
     if gols2 > gols1:
         times[time2]["pontos"] += 3
     elif gols1 == gols2:
@@ -79,7 +79,7 @@ def exibir_tabela():
         if opcao_tabela == "1":
             print("\nTabela de classificação (Pontuação):")
             print("{:<15} {:<10} {:<10} {:<10} {:<10}".format("Time", "Pontos", "Gols Pró", "Gols Contra", "Saldo"))
-            tabela = sorted(times.items(), key=lambda x: (x[1]["pontos"], x[1]["saldo"]), reverse=True)
+            tabela = sorted(times.items(), key=lambda x: (x[1]["pontos"], x[1]["saldo"], x[1]["gols_pro"]), reverse=True)
             for time, stats in tabela:
                 print(
                     "{:<15} {:<10} {:<10} {:<10} {:<10}".format(time, stats["pontos"], stats["gols_pro"], stats["gols_contra"], stats["saldo"]))
@@ -109,6 +109,9 @@ def exibir_tabela():
             break
         else:
             print("Opção inválida!")
+        if not opcao_tabela.isdigit():
+            print("Opção inválida! Digite um número.")
+            continue
 
 def exibir_artilharia():
     if not artilheiros:
@@ -122,6 +125,39 @@ def exibir_artilharia():
     for jogador, gols in sorted(artilheiros.items(), key=lambda x: x[1], reverse=True):
         print("{:<20} {:<10}".format(jogador, gols))
 
+def contar_jogos(time):
+    jogos = 0
+    for rodada, partidas in historico.items():
+        for partida in partidas:
+            if partida["time1"] == time or partida["time2"] == time:
+                jogos += 1
+    return jogos
+
+def estatisticas_times():
+    time = input("Digite o nome do time para exibir as estatísticas: ")
+    if time not in times:
+        print("Time não encontrado!")
+        return
+
+    jogos = contar_jogos(time)
+    pontos = times[time]["pontos"]
+    gols_pro = times[time]["gols_pro"]
+    gols_contra = times[time]["gols_contra"]
+    saldo = times[time]["saldo"]
+    vitorias = pontos // 3
+    empates = pontos % 3
+    derrotas = jogos - vitorias - empates
+    aproveitamento = (pontos / (jogos * 3)) * 100 if jogos > 0 else 0
+
+    print(f"\nEstatísticas do {time}:")
+    print(f"Jogos: {jogos}")
+    print(f"Vitórias: {vitorias}")
+    print(f"Empates: {empates}")
+    print(f"Derrotas: {derrotas}")
+    print(f"Gols Marcados: {gols_pro}")
+    print(f"Gols Sofridos: {gols_contra}")
+    print(f"Saldo de Gols: {saldo}")
+    print(f"Aproveitamento: {aproveitamento:.2f}%")
 
 while True:
     print("\n1. Cadastrar Time")
@@ -129,7 +165,8 @@ while True:
     print("3. Exibir Histórico")
     print("4. Exibir Tabela")
     print("5. Exibir Artilheiros")
-    print("6. Sair")
+    print("6. Exibir Estatísticas")
+    print("7. Sair")
     opcao = input("Escolha uma opção: ")
 
     if opcao == "1":
@@ -143,7 +180,12 @@ while True:
     elif opcao == "5":
         exibir_artilharia()
     elif opcao == "6":
+        estatisticas_times()
+    elif opcao == "7":
         print("Encerrando o programa.")
         break
     else:
         print("Opção inválida!")
+    if not opcao.isdigit():
+        print("Opção inválida! Digite um número.")
+        continue
