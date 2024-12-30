@@ -1,28 +1,165 @@
 import random
 
-times = {}
+times = {
+    "Bangu": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+        "Ubirajara": {"posicao": "GOL", "gols": 0},
+        "Marinho": {"posicao": "DEF", "gols": 0},
+        "Zózimo": {"posicao": "DEF", "gols": 0},
+        "Jair Marinho": {"posicao": "DEF", "gols": 0},
+        "Moça Bonita": {"posicao": "MC", "gols": 0},
+        "Ocimar": {"posicao": "MC", "gols": 0},
+        "Mendonça": {"posicao": "MC", "gols": 0},
+        "Paulo Borges": {"posicao": "ATA", "gols": 0},
+        "Décio Esteves": {"posicao": "ATA", "gols": 0},
+        "Ladislau": {"posicao": "ATA", "gols": 0},
+        "Ademir da Guia": {"posicao": "ATA", "gols": 0}
+    }},
+    "Boavista": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+        "Eduardo Allax": {"posicao": "GOL", "gols": 0},
+        "Carlos Alberto": {"posicao": "DEF", "gols": 0},
+        "Diguinho": {"posicao": "DEF", "gols": 0},
+        "Fernando": {"posicao": "DEF", "gols": 0},
+        "Michel": {"posicao": "DEF", "gols": 0},
+        "Marquinhos": {"posicao": "MC", "gols": 0},
+        "Celsinho": {"posicao": "MC", "gols": 0},
+        "Zé Roberto": {"posicao": "MC", "gols": 0},
+        "Jean": {"posicao": "MC", "gols": 0},
+        "Max": {"posicao": "ATA", "gols": 0},
+        "Leandrão": {"posicao": "ATA", "gols": 0}
+    }},
+    "Botafogo": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+        "Manga": {"posicao": "GOL", "gols": 0},
+        "Nilton Santos": {"posicao": "DEF", "gols": 0},
+        "Sebastião Leônidas": {"posicao": "DEF", "gols": 0},
+        "Alexander Barboza": {"posicao": "DEF", "gols": 0},
+        "Marlon Freitas": {"posicao": "MC", "gols": 0},
+        "Zagallo": {"posicao": "MC", "gols": 0},
+        "Gérson": {"posicao": "MC", "gols": 0},
+        "Amarildo": {"posicao": "ATA", "gols": 0},
+        "Garrincha": {"posicao": "ATA", "gols": 0},
+        "Jairzinho": {"posicao": "ATA", "gols": 0},
+        "Heleno de Freitas": {"posicao": "ATA", "gols": 0}
+    }},
+    "Flamengo": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+        "Raul": {"posicao": "GOL", "gols": 0},
+        "Rondinelli": {"posicao": "DEF", "gols": 0},
+        "Júnior": {"posicao": "DEF", "gols": 0},
+        "Leandro": {"posicao": "DEF", "gols": 0},
+        "Mozer": {"posicao": "DEF", "gols": 0},
+        "Zico": {"posicao": "MC", "gols": 0},
+        "Andrade": {"posicao": "MC", "gols": 0},
+        "Arrascaeta": {"posicao": "MC", "gols": 0},
+        "Adílio": {"posicao": "MC", "gols": 0},
+        "Nunes": {"posicao": "ATA", "gols": 0},
+        "Tita": {"posicao": "ATA", "gols": 0}
+    }},
+    "Fluminense": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+        "Castilho": {"posicao": "GOL", "gols": 0},
+        "Carlos Alberto Torres": {"posicao": "DEF", "gols": 0},
+        "Edinho": {"posicao": "DEF", "gols": 0},
+        "Thiago Silva": {"posicao": "DEF", "gols": 0},
+        "Rivelino": {"posicao": "MC", "gols": 0},
+        "Didi": {"posicao": "MC", "gols": 0},
+        "Assis": {"posicao": "MC", "gols": 0},
+        "Washington": {"posicao": "MC", "gols": 0},
+        "Fred": {"posicao": "ATA", "gols": 0},
+        "Waldo": {"posicao": "ATA", "gols": 0},
+        "German Cano": {"posicao": "ATA", "gols": 0}
+    }},
+    "Madureira": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+            "Marcelo Carné": {"posicao": "GOL", "gols": 0},
+            "Henrique": {"posicao": "DEF", "gols": 0},
+            "Humberto": {"posicao": "DEF", "gols": 0},
+            "Valdir": {"posicao": "DEF", "gols": 0},
+            "Wanderley": {"posicao": "MC", "gols": 0},
+            "Claudinho": {"posicao": "MC", "gols": 0},
+            "Caio": {"posicao": "MC", "gols": 0},
+            "Bebeto de Freitas": {"posicao": "MC", "gols": 0},
+            "Maneco": {"posicao": "ATA", "gols": 0},
+            "Eraldo": {"posicao": "ATA", "gols": 0},
+            "Jorge Mendonça": {"posicao": "ATA", "gols": 0}
+        }},
+    "Maricá": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+            "Vinícius": {"posicao": "GOL", "gols": 0},
+            "Paulo Vítor": {"posicao": "DEF", "gols": 0},
+            "Tiago": {"posicao": "DEF", "gols": 0},
+            "Gabriel": {"posicao": "DEF", "gols": 0},
+            "Wesley": {"posicao": "DEF", "gols": 0},
+            "Renatinho": {"posicao": "MC", "gols": 0},
+            "Nildo": {"posicao": "MC", "gols": 0},
+            "Marquinhos": {"posicao": "MC", "gols": 0},
+            "Silas": {"posicao": "ATA", "gols": 0},
+            "Thiaguinho": {"posicao": "ATA", "gols": 0},
+            "Felipe Adão": {"posicao": "ATA", "gols": 0}
+        }},
+    "Nova Iguaçu": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+            "Jefferson": {"posicao": "GOL", "gols": 0},
+            "Bruno Costa": {"posicao": "DEF", "gols": 0},
+            "Rodrigo Sam": {"posicao": "DEF", "gols": 0},
+            "Wallace": {"posicao": "DEF", "gols": 0},
+            "Lucas": {"posicao": "MC", "gols": 0},
+            "Elias": {"posicao": "MC", "gols": 0},
+            "Thiago Martins": {"posicao": "MC", "gols": 0},
+            "João Pedro": {"posicao": "MC", "gols": 0},
+            "Zambi": {"posicao": "ATA", "gols": 0},
+            "Dellatorre": {"posicao": "ATA", "gols": 0},
+            "Douglas": {"posicao": "ATA", "gols": 0}
+        }},
+    "Portuguesa RJ": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+            "Marcão": {"posicao": "GOL", "gols": 0},
+            "Diego Guerra": {"posicao": "DEF", "gols": 0},
+            "André Silva": {"posicao": "DEF", "gols": 0},
+            "Rodrigo Lobão": {"posicao": "DEF", "gols": 0},
+            "Luan": {"posicao": "MC", "gols": 0},
+            "Romarinho": {"posicao": "MC", "gols": 0},
+            "Gean": {"posicao": "MC", "gols": 0},
+            "Vinícius Pacheco": {"posicao": "MC", "gols": 0},
+            "Ricardinho": {"posicao": "ATA", "gols": 0},
+            "Lucas Silva": {"posicao": "ATA", "gols": 0},
+            "Bruninho": {"posicao": "ATA", "gols": 0}
+        }},
+    "Sampaio Corrêa": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+            "Luís": {"posicao": "GOL", "gols": 0},
+            "Tiago Gaúcho": {"posicao": "DEF", "gols": 0},
+            "Henrique Mattos": {"posicao": "DEF", "gols": 0},
+            "Anderson Luiz": {"posicao": "DEF", "gols": 0},
+            "Wellington": {"posicao": "DEF", "gols": 0},
+            "Márcio Passos": {"posicao": "MC", "gols": 0},
+            "Raul": {"posicao": "MC", "gols": 0},
+            "Marcio Diogo": {"posicao": "MC", "gols": 0},
+            "João Paulo": {"posicao": "MC", "gols": 0},
+            "Lucão": {"posicao": "ATA", "gols": 0},
+            "Marcos Assunção": {"posicao": "ATA", "gols": 0}
+        }},
+    "Vasco da Gama": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+            "Barbosa": {"posicao": "GOL", "gols": 0},
+            "Bellini": {"posicao": "DEF", "gols": 0},
+            "Mauro Galvão": {"posicao": "DEF", "gols": 0},
+            "Orlando Peçanha": {"posicao": "DEF", "gols": 0},
+            "Juninho Pernambucano": {"posicao": "MC", "gols": 0},
+            "Ademir de Menezes": {"posicao": "MC", "gols": 0},
+            "Edmundo": {"posicao": "MC", "gols": 0},
+            "Roberto Dinamite": {"posicao": "MC", "gols": 0},
+            "Romário": {"posicao": "ATA", "gols": 0},
+            "Valdir Bigode": {"posicao": "ATA", "gols": 0},
+            "Bebeto": {"posicao": "ATA", "gols": 0}
+        }},
+    "Volta Redonda": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
+            "Douglas Borges": {"posicao": "GOL", "gols": 0},
+            "Marcelo": {"posicao": "DEF", "gols": 0},
+            "Willian": {"posicao": "DEF", "gols": 0},
+            "João Victor": {"posicao": "DEF", "gols": 0},
+            "Michel": {"posicao": "MC", "gols": 0},
+            "Bruno Barra": {"posicao": "MC", "gols": 0},
+            "Alef": {"posicao": "MC", "gols": 0},
+            "Pablo": {"posicao": "MC", "gols": 0},
+            "Saulo Mineiro": {"posicao": "ATA", "gols": 0},
+            "Pedro Raul": {"posicao": "ATA", "gols": 0},
+            "Ramon": {"posicao": "ATA", "gols": 0}
+    }},
+}
 artilheiros = {}
 historico = {}
-
-def cadastrar_times():
-    nome = input("Digite o nome do time: ")
-    if nome in times:
-        print("Time já cadastrado!")
-    else:
-        times[nome] = {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {}}
-
-        for i in range(1, 12):
-            jogador = input(f"Digite o nome do {i}° jogador: ")
-            while True:
-                posicao = input(f"Digite a posição do {jogador} (ATA, MC, DEF, GOL): ").upper()
-                if posicao in ['ATA', 'MC', 'DEF', 'GOL']:
-                    break
-                else:
-                    print("Posição inválida! Escolha entre: ATA, MC, DEF, GOL.")
-
-            times[nome]["jogadores"][jogador] = {"posicao": posicao}
-
-        print(f"Time '{nome}' e seus jogadores cadastrados com sucesso!")
 
 def exibir_historico(rodada):
     if rodada in historico:
@@ -138,82 +275,103 @@ def simular_jogo(time1, time2):
     gols2 = random.randint(0, 5)
     return {"gols1": gols1, "gols2": gols2}
 
+    for _ in range(gols1):
+        jogador_escolhido = random.choise(
+            list(times[time1]["jogadores"].keys()),
+            weights=[0.8 if info["posicao"] == "ATA" else 0.5 if info["posicao"] == "MC" else 0.3 for info in times[time1]["jogadores"].vlues()],
+            k=1
+        )[0]
+        times[time1]["jogadores"][jogador_escolhido]["gols"] += 1
+
+        for _ in range(gols2):
+            jogador_escolhido = random.choices(
+                list(times[time2]["jogadores"].keys()),
+                weights=[0.8 if info["posicao"] == "ATA" else 0.5 if info["posicao"] == "MC" else 0.3 for info in
+                         times[time2]["jogadores"].values()],
+                k=1
+            )[0]
+            times[time2]["jogadores"][jogador_escolhido]["gols"] += 1
+
+        return {"gols1": gols1, "gols2": gols2}
+
 def registrar_resultados_auto():
     confrontos = gerar_confrontos(times)
-    rodada = 1
-    max_rodada = len(times) - 1
-    for time1, time2 in confrontos:
-        if rodada > max_rodada:
+    total_rodadas = len(times) - 1
+    rodada_atual = 1
+
+    confrontos_por_rodada = len(confrontos) // total_rodadas
+    for i in range(0, len(confrontos), confrontos_por_rodada):
+        if rodada_atual > total_rodadas:
             break
 
-        print(f"Rodada {rodada}: {time1} x {time2}")
+        historico[rodada_atual] = []
+        rodada_confrontos = confrontos[i:i + confrontos_por_rodada]
 
-        resultado = simular_jogo(time1, time2)
+        for time1, time2 in rodada_confrontos:
+            resultado = simular_jogo(time1, time2)
+            gols1 = resultado["gols1"]
+            gols2 = resultado["gols2"]
 
-        gols1 = resultado["gols1"]
-        gols2 = resultado["gols2"]
+            times[time1]["gols_pro"] += gols1
+            times[time1]["gols_contra"] += gols2
+            times[time1]["saldo"] = times[time1]["gols_pro"] - times[time1]["gols_contra"]
+            if gols1 > gols2:
+                times[time1]["pontos"] += 3
+            elif gols1 == gols2:
+                times[time1]["pontos"] += 1
 
-        times[time1]["gols_pro"] += gols1
-        times[time1]["gols_contra"] += gols2
-        times[time1]["saldo"] = times[time1]["gols_pro"] - times[time1]["gols_contra"]
-        if gols1 > gols2:
-            times[time1]["pontos"] += 3
-        elif gols1 == gols2:
-            times[time1]["pontos"] += 1
+            times[time2]["gols_pro"] += gols2
+            times[time2]["gols_contra"] += gols1
+            times[time2]["saldo"] = times[time2]["gols_pro"] - times[time2]["gols_contra"]
+            if gols2 > gols1:
+                times[time2]["pontos"] += 3
+            elif gols1 == gols2:
+                times[time2]["pontos"] += 1
 
-        times[time2]["gols_pro"] += gols2
-        times[time2]["gols_contra"] += gols1
-        times[time2]["saldo"] = times[time2]["gols_pro"] - times[time2]["gols_contra"]
-        if gols2 > gols1:
-            times[time2]["pontos"] += 3
-        elif gols1 == gols2:
-            times[time2]["pontos"] += 1
+            historico[rodada_atual].append({"time1": time1, "gols1": gols1, "time2": time2, "gols2": gols2})
 
-        if rodada not in historico:
-            historico[rodada] = []
-        historico[rodada].append({"time1": time1, "gols1": gols1, "time2": time2, "gols2": gols2})
+        rodada_atual += 1
 
-        rodada += 1
     print("Simulação Concluída!")
 
-def registrar_artilheiros():
-    artilheiros = {}
+def exibir_artilheiros():
+    artilheiros = []
 
     for time, info_time in times.items():
         for jogador, info_jogador in info_time["jogadores"].items():
-            gols_jogador = random.randint(0, 2)
-            if jogador in artilheiros:
-                artilheiros[jogador] += gols_jogador
-            else:
-                artilheiros[jogador] = gols_jogador
+            artilheiros.append({"jogador": jogador, "time": time, "gols": info_jogador["gols"]})
 
-    print("Artilheiros:")
-    for jogador, gols in sorted(artilheiros.items(), key=lambda x: x[1], reverse=True):
-        print(f"{jogador}: {gols} gols")
+    artilheiros = sorted(artilheiros, key=lambda x: x["gols"], reverse=True)
+
+    print("\nArtilheiros:")
+    print("-" * 30)
+    for artilheiro in artilheiros:
+        print(f"{artilheiro['jogador']} ({artilheiro['time']}): {artilheiro['gols']} gols")
+        print("-" * 30)
 
 while True:
-    print("\n1. Cadastrar Time")
-    print("2. Exibir Histórico")
-    print("3. Exibir Tabela")
-    print("4. Exibir Elencos")
-    print("5. Exibir Estatísticas")
-    print("6. Simular Jogos")
+    print("1. Exibir Histórico")
+    print("2. Exibir Tabela")
+    print("3. Exibir Elencos")
+    print("4. Exibir Estatísticas")
+    print("5. Simular Jogos")
+    print("6. Exibir Artilheiros")
     print("7. Sair")
     opcao = input("Escolha uma opção: ")
 
     if opcao == "1":
-        cadastrar_times()
-    elif opcao == "2":
         rodada = int(input("Digite o número da rodada para exibir os resultados: "))
         exibir_historico(rodada)
-    elif opcao == "3":
+    elif opcao == "2":
         exibir_tabela()
-    elif opcao == "4":
+    elif opcao == "3":
         exibir_elencos()
-    elif opcao == "5":
+    elif opcao == "4":
         estatisticas_times()
-    elif opcao == "6":
+    elif opcao == "5":
         registrar_resultados_auto()
+    elif opcao == "6":
+        exibir_artilheiros()
     elif opcao == "7":
         print("Encerrando o programa.")
         break
