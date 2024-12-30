@@ -1,4 +1,6 @@
 import random
+import tkinter as tk
+from tkinter import messagebox
 
 times = {
     "Bangu": {"pontos": 0, "gols_pro": 0, "gols_contra": 0, "saldo": 0, "jogadores": {
@@ -349,31 +351,33 @@ def exibir_artilheiros():
         print(f"{artilheiro['jogador']} ({artilheiro['time']}): {artilheiro['gols']} gols")
         print("-" * 30)
 
-while True:
-    print("1. Exibir Histórico")
-    print("2. Exibir Tabela")
-    print("3. Exibir Elencos")
-    print("4. Exibir Estatísticas")
-    print("5. Simular Jogos")
-    print("6. Exibir Artilheiros")
-    print("7. Sair")
-    opcao = input("Escolha uma opção: ")
-
-    if opcao == "1":
-        rodada = int(input("Digite o número da rodada para exibir os resultados: "))
-        exibir_historico(rodada)
-    elif opcao == "2":
-        exibir_tabela()
-    elif opcao == "3":
-        exibir_elencos()
-    elif opcao == "4":
-        estatisticas_times()
-    elif opcao == "5":
-        registrar_resultados_auto()
-    elif opcao == "6":
-        exibir_artilheiros()
-    elif opcao == "7":
-        print("Encerrando o programa.")
-        break
+def exibir_informacoes():
+    time_selecionado = time_var.get()
+    if time_selecionado:
+        time_info = times.get(time_selecionado)
+        info_text = f"Time: {time_selecionado}\n"
+        info_text += f"Pontos: {time_info['pontos']}\n"
+        info_text += f"Gols Pró: {time_info['gols_pro']}\n"
+        info_text += f"Gols Contra: {time_info['gols_contra']}\n"
+        info_text += f"Saldo de Gols: {time_info['saldo']}\n"
+        info_text += "Jogadores:\n"
+        for jogador, dados in time_info['jogadores'].items():
+            info_text += f" {jogador} - Posição: {dados['posicao']} - Gols: {dados['gols']}\n"
+        label_info.config(text=info_text)
     else:
-        print("Opção inválida!")
+        messagebox.showwarning("Aviso", "Selecione um time para exibir as informações.")
+
+root = tk.Tk()
+root.title("Simulador Campeonato Carioca")
+
+time_var = tk.StringVar()
+time_selecionado = tk.OptionMenu(root, time_var, *times.keys())
+time_selecionado.pack(pady=20)
+
+btn_exibir = tk.Button(root, text="Exibir Informações", command=exibir_informacoes)
+btn_exibir.pack(pady=10)
+
+label_info = tk.Label(root, text="", justify=tk.LEFT)
+label_info.pack(pady=10)
+
+root.mainloop()
